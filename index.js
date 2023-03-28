@@ -4,15 +4,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import blogRoutes from "./routes/blogs.js";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 dotenv.config();
-// const __dirname = path.dirname("");
-
 
 const connect = () => {
   mongoose
@@ -28,20 +22,6 @@ const connect = () => {
 app.use(cors());
 app.use(express.json());
 app.use("/api/blog", blogRoutes);
-
-// const buildPath = path.join(__dirname, "../client/build");
-
-// app.use(express.static(buildPath));
-// app.get("/*", function (req, res) {
-//   res.sendFile(
-//     path.join(__dirname, "../client/build/index.html"),
-//     function (err) {
-//       if (err) {
-//         res.status(500).send(err);
-//       }
-//     }
-//   );
-// });
 
 app.use((err, req, res, next) => {
   console.log(err);
